@@ -1,9 +1,12 @@
 package com.tylerlutz.brewyou.Models;
 
 import android.text.format.Time;
+import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by michaelmoser on 11/30/15.
@@ -99,5 +102,19 @@ public class Restaurant {
 
     public void setRestaurantLastVisit(){
         this.restaurantLastVisit = Calendar.getInstance().getTime();
+    }
+
+    public int findRestaurantId(String name){
+        List<Restaurant> restaurants;{
+            restaurants = new ArrayList<Restaurant>();
+
+        }
+
+        for (Restaurant restaurant:restaurants){
+            if (restaurant.getRestaurantName().equals(name)){
+                return restaurant.getRestaurantId();
+            }
+        }
+        return 0;
     }
 }
