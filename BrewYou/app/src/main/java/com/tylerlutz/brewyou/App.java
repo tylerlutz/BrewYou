@@ -3,6 +3,7 @@ package com.tylerlutz.brewyou;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseFacebookUtils;
 
 /**
  * Created by Tyler on 11/27/15.
@@ -15,5 +16,8 @@ public class App extends Application {
         // Enable Local Datastore
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "cxojXRFsShXR2kiSQEmcXwM2MwlexHzTzmvrUc8m", "eV4EY8gydxRcDP73OW0VjiqxFylky8LpPnzNOAUx");
+
+        ParseFacebookUtils.initialize(this);
+
     }
 }
