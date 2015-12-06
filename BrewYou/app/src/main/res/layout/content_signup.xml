@@ -10,11 +10,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User Name"/>
+        android:text="Email Address"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtUserName"/>
+        android:id="@+id/txtRegisterUserName"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtPassword"/>
+        android:password="true"
+        android:id="@+id/txtRegisterPassword"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +31,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtPasswordMatch"/>
+        android:password="true"
+        android:id="@+id/txtRegisterPasswordMatch"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

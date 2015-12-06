@@ -24,6 +24,10 @@
             android:label="BrewYou Login">
             <!--android:parentActivityName=".MainActivity">-->
         </activity>
+        <activity android:name=".SignupActivity"
+            android:label="BrewYou Account Registration">
+
+        </activity>
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"

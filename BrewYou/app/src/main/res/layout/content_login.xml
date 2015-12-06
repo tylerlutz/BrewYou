@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User Name"/>
+        android:text="Email Address"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,6 +22,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:password="true"
         android:id="@+id/txtPassword"/>
     <Button
         android:layout_width="match_parent"
@@ -31,8 +32,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnRegister"
-        android:text="Register New Account"/>
+        android:id="@+id/btnSignup"
+        android:text="Signup for New Account"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
