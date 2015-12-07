@@ -1,5 +1,8 @@
 package com.tylerlutz.brewyou.Models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by michaelmoser on 11/30/15.
  */
@@ -68,5 +71,19 @@ public class Beer {
 
     public void setBeerRating(int beerRating){
         this.beerRating = beerRating;
+    }
+
+    public int findBeerId(String name){
+        List<Beer> beers;{
+            beers = new ArrayList<Beer>();
+
+        }
+
+        for (Beer beer:beers){
+            if (beer.getBeerName().equals(name)){
+                return beer.getBeerId();
+            }
+        }
+        return 0;
     }
 }
