@@ -34,16 +34,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnSignup"
         android:text="Signup for New Account"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnFacebookLogin"
-        android:text="Login with Facebook"/>
-    <!--<com.facebook.login.widget.LoginButton-->
-        <!--android:id="@+id/btnFacebookLogin"-->
-        <!--android:layout_width="wrap_content"-->
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:layout_marginBottom="30dp" />-->
+        <!--android:id="@+id/btnFacebookLogin"-->
+        <!--android:text="Login with Facebook"/>-->
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btnFacebookLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
 </LinearLayout>
