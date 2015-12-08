@@ -12,8 +12,12 @@
     tools:context="com.tylerlutz.brewyou.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/listViewResturants"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+    </ListView>
 </RelativeLayout>
