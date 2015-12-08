@@ -14,12 +14,17 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.tylerlutz.brewyou.Models.Restaurant;
+import com.tylerlutz.brewyou.Models.RestaurantAdapter;
+import com.tylerlutz.brewyou.Services.RestaurantService;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
+
+        //Generate Restaurants
+        ListView listViewRestaurants = (ListView) findViewById(R.id.listViewResturants);
+        final List<Restaurant> restaurants = new RestaurantService().findAll();
+        RestaurantAdapter arrayAdapter = new RestaurantAdapter(this,
+                R.layout.layout_for_each_restaurant,restaurants);
+        listViewRestaurants.setAdapter(arrayAdapter);
     }
 
     @Override

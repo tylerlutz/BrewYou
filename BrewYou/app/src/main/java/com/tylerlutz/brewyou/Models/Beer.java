@@ -74,12 +74,12 @@ public class Beer {
     }
 
     public int findBeerId(String name){
-        List<Beer> beers;{
-            beers = new ArrayList<Beer>();
+        List<Beer> beerList;{
+            beerList = new ArrayList<Beer>();
 
         }
 
-        for (Beer beer:beers){
+        for (Beer beer:beerList){
             if (beer.getBeerName().equals(name)){
                 return beer.getBeerId();
             }
