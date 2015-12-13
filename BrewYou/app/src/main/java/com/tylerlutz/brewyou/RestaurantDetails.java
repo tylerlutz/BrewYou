@@ -73,9 +73,32 @@ public class RestaurantDetails extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),UpdateRestaurantActivity.class);
-                intent.putExtra("objectid",restaurant.getRestaurantId());
+                Intent intent = new Intent(getApplicationContext(), UpdateRestaurantActivity.class);
+                intent.putExtra("objectid", restaurant.getRestaurantId());
                 startActivity(intent);
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Restaurant");
+                query.getInBackground(restaurant.getRestaurantId(), new GetCallback<ParseObject>() {
+                    public void done(ParseObject parseObject, ParseException e) {
+                        if (e == null) {
+
+                            parseObject.deleteInBackground();
+
+                            Intent listActivity = new Intent(getApplicationContext(), RestaurantListActivity.class);
+                            startActivity(listActivity);
+
+                        } else {
+                            Toast.makeText(getApplicationContext(),
+                                    "Something went wrong",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
         });
 
