@@ -1,5 +1,11 @@
 package com.tylerlutz.brewyou.Services;
 
+import com.parse.FindCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.tylerlutz.brewyou.Models.Restaurant;
 
 import java.util.ArrayList;
@@ -13,10 +19,27 @@ import java.util.List;
 public class RestaurantService {
     private List<Restaurant> restaurants;
     {
-        restaurants = new ArrayList<Restaurant>();
-        restaurants.add(new Restaurant("Test Bar","123 Test St","Louisville","KY","40208"));
-        restaurants.add(new Restaurant("Test Bar1","1234 Test St","Louisville","KY","40208"));
-        restaurants.add(new Restaurant("Test Bar2","1235 Test St","Louisville","KY","40208"));
+        restaurants = new ArrayList<>();
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Restaurant");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> restaurantList, ParseException e) {
+                if(e==null){
+                    for(ParseObject restaurant: restaurantList){
+//                       if(restaurant.getString("user").equals(ParseUser.getCurrentUser().getObjectId())){
+                            Restaurant addRestaurant = new Restaurant();
+                            addRestaurant.setRestaurantName(restaurant.getString("name"));
+                            addRestaurant.setRestaurantAddress(restaurant.getString("address"));
+                            addRestaurant.setRestaurantCity(restaurant.getString("city"));
+                            addRestaurant.setRestaurantState(restaurant.getString("state"));
+                            addRestaurant.setRestaurantZip(restaurant.getString("zip"));
+                            restaurants.add(addRestaurant);
+//                       }
+                    }
+                }
+            }
+        });
 
     }
 

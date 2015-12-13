@@ -52,93 +52,93 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        userName = (EditText) findViewById(R.id.txtUserName);
-        password = (EditText) findViewById(R.id.txtPassword);
+            userName = (EditText) findViewById(R.id.txtUserName);
+            password = (EditText) findViewById(R.id.txtPassword);
 
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnRegister = (Button) findViewById(R.id.btnSignup);
-        btnFacebook = (Button) findViewById(R.id.btnFacebookLogin);
+            btnLogin = (Button) findViewById(R.id.btnLogin);
+            btnRegister = (Button) findViewById(R.id.btnSignup);
+            btnFacebook = (Button) findViewById(R.id.btnFacebookLogin);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean validationError = false;
-                StringBuilder validationErrorMessage = new StringBuilder("Please ");
+            btnLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean validationError = false;
+                    StringBuilder validationErrorMessage = new StringBuilder("Please ");
 
-                if (isEmpty(userName)) {
-                    validationError = true;
-                    validationErrorMessage.append("enter your email address");
-                }
-                if (isEmpty(password)) {
+                    if (isEmpty(userName)) {
+                        validationError = true;
+                        validationErrorMessage.append("enter your email address");
+                    }
+                    if (isEmpty(password)) {
+                        if (validationError) {
+                            validationErrorMessage.append(", and");
+                        }
+                        validationError = true;
+                        validationErrorMessage.append(" enter your password");
+                    }
+                    validationErrorMessage.append(".");
+
                     if (validationError) {
-                        validationErrorMessage.append(", and");
+                        Toast.makeText(LoginActivity.this, validationErrorMessage.toString(), Toast.LENGTH_LONG).show();
+                        return;
                     }
-                    validationError = true;
-                    validationErrorMessage.append(" enter your password");
-                }
-                validationErrorMessage.append(".");
 
-                if (validationError) {
-                    Toast.makeText(LoginActivity.this, validationErrorMessage.toString(), Toast.LENGTH_LONG).show();
-                    return;
-                }
+                    final ProgressDialog dlg = new ProgressDialog(LoginActivity.this);
+                    dlg.setTitle("Please Wait");
+                    dlg.setMessage("Logging in. Please wait.");
+                    dlg.show();
 
-                final ProgressDialog dlg = new ProgressDialog(LoginActivity.this);
-                dlg.setTitle("Please Wait");
-                dlg.setMessage("Logging in. Please wait.");
-                dlg.show();
-
-                ParseUser.logInInBackground(userName.getText().toString(), password.getText().toString(), new LogInCallback() {
-                    @Override
-                    public void done(ParseUser parseUser, ParseException e) {
-                        dlg.dismiss();
-                        if (e != null) {
-                            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                        } else {
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
+                    ParseUser.logInInBackground(userName.getText().toString(), password.getText().toString(), new LogInCallback() {
+                        @Override
+                        public void done(ParseUser parseUser, ParseException e) {
+                            dlg.dismiss();
+                            if (e != null) {
+                                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            } else {
+                                Intent intent = new Intent(LoginActivity.this, RestaurantListActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
                         }
-                    }
-                });
-            }
-        });
+                    });
+                }
+            });
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-                startActivity(intent);
-            }
-        });
+            btnRegister.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                    startActivity(intent);
+                }
+            });
 
-        btnFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            btnFacebook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, mPermissions, new LogInCallback() {
-                    @Override
-                    public void done(ParseUser user, ParseException err) {
+                    ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, mPermissions, new LogInCallback() {
+                        @Override
+                        public void done(ParseUser user, ParseException err) {
 
-                        if (user == null) {
-                            Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
-                        } else if (user.isNew()) {
-                            Log.d("MyApp", "User signed up and logged in through Facebook!");
-                            getUserDetailsFromFB();
-                            saveNewUser();
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            startActivity(intent);
-                        } else {
-                            getUserDetailsFromFB();
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            startActivity(intent);
-                            Log.d("MyApp", "User logged in through Facebook!");
+                            if (user == null) {
+                                Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                            } else if (user.isNew()) {
+                                Log.d("MyApp", "User signed up and logged in through Facebook!");
+                                getUserDetailsFromFB();
+                                saveNewUser();
+                                Intent intent = new Intent(LoginActivity.this,RestaurantListActivity.class);
+                                startActivity(intent);
+                            } else {
+                                getUserDetailsFromFB();
+                                Intent intent = new Intent(LoginActivity.this,RestaurantListActivity.class);
+                                startActivity(intent);
+                                Log.d("MyApp", "User logged in through Facebook!");
+                            }
                         }
-                    }
-                });
+                    });
 
-            }
-        });
+                }
+            });
     }
 
     private void saveNewUser() {

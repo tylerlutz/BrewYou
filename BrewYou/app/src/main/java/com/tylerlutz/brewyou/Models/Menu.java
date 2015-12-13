@@ -8,13 +8,13 @@ import java.util.List;
  */
 public class Menu {
     private int menuId;
-    private int restaurantId;
+    private String restaurantId;
     private int beerId;
 
     public Menu(){}
 
     public Menu (String restaurant, String beer) {
-        if (findRestaurantId(restaurant) != 0) {
+        if (findRestaurantId(restaurant) != null) {
             this.restaurantId = findRestaurantId(restaurant);
         }
         if (findBeerId(beer) != 0){
@@ -38,15 +38,15 @@ public class Menu {
         this.beerId = beerId;
     }
 
-    public int getRestaurantId() {
+    public String getRestaurantId() {
         return restaurantId;
     }
 
-    public void setRestaurantId(int restaurantId) {
+    public void setRestaurantId(String restaurantId) {
         this.restaurantId =  restaurantId;
     }
 
-    public int findRestaurantId(String name){
+    public String findRestaurantId(String name){
         List<Restaurant> restaurants;{
             restaurants = new ArrayList<Restaurant>();
 
@@ -57,7 +57,7 @@ public class Menu {
                 return restaurant.getRestaurantId();
             }
         }
-        return 0;
+        return null;
     }
 
     public int findBeerId(String name){

@@ -79,7 +79,7 @@ public class SignupActivity extends AppCompatActivity {
                         if(e != null){
                             Toast.makeText(SignupActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }else{
-                            Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                            Intent intent = new Intent(SignupActivity.this, RestaurantListActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                         }

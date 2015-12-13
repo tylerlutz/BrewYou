@@ -12,7 +12,7 @@ import java.util.List;
  * Created by michaelmoser on 11/30/15.
  */
 public class Restaurant {
-    private int restaurantId;
+    private String restaurantId;
     private String restaurantName;
     private String restaurantAddress;
     private String restaurantCity;
@@ -35,11 +35,11 @@ public class Restaurant {
         this.restaurantFirstVisit = Calendar.getInstance().getTime();
     }
 
-    public int getRestaurantId(){
+    public String getRestaurantId(){
         return restaurantId;
     }
 
-    public void setRestaurantId(int restaurantId){
+    public void setRestaurantId(String restaurantId){
         this.restaurantId = restaurantId;
     }
 
@@ -104,7 +104,7 @@ public class Restaurant {
         this.restaurantLastVisit = Calendar.getInstance().getTime();
     }
 
-    public int findRestaurantId(String name){
+    public String findRestaurantId(String name){
         List<Restaurant> restaurants;{
             restaurants = new ArrayList<Restaurant>();
 
@@ -115,6 +115,6 @@ public class Restaurant {
                 return restaurant.getRestaurantId();
             }
         }
-        return 0;
+        return null;
     }
 }
