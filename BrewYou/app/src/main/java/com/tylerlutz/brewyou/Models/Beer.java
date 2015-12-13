@@ -5,9 +5,10 @@ import java.util.List;
 
 /**
  * Created by michaelmoser on 11/30/15.
+ * Edited by tylerlutz on 12/13/15
  */
 public class Beer {
-    private int beerId;
+    private String beerId;
     private String beerBrewer;
     private String beerName;
     private String beerType;
@@ -25,11 +26,11 @@ public class Beer {
         this.beerRating = beerRating;
     }
 
-    public int getBeerId (){
+    public String getBeerId (){
         return beerId;
     }
 
-    public void setBeerId(int beerId){
+    public void setBeerId(String beerId){
         this.beerId = beerId;
     }
 
@@ -73,7 +74,7 @@ public class Beer {
         this.beerRating = beerRating;
     }
 
-    public int findBeerId(String name){
+    public String findBeerId(String name){
         List<Beer> beerList;{
             beerList = new ArrayList<Beer>();
 
@@ -84,6 +85,6 @@ public class Beer {
                 return beer.getBeerId();
             }
         }
-        return 0;
+        return null;
     }
 }

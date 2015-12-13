@@ -1,0 +1,65 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="placholder"
+        android:gravity="center_horizontal"
+        android:paddingTop="40dp"
+        android:id="@+id/txtBeerDetailName"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:paddingBottom="20dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="brewer"
+        android:gravity="center_horizontal"
+        android:id="@+id/txtBeerDetailBrewer"
+        android:paddingBottom="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="type"
+        android:gravity="center_horizontal"
+        android:id="@+id/txtBeerDetailType"
+        android:paddingBottom="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="rating"
+        android:gravity="center_horizontal"
+        android:id="@+id/txtBeerDetailRating"
+        android:paddingBottom="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnEditBeer"
+        android:text="Edit Beer"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnDeleteBeer"
+        android:text="Delete Beer"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        />
+
+</LinearLayout>

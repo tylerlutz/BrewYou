@@ -1,4 +1,4 @@
-package com.tylerlutz.brewyou.Models;
+package com.tylerlutz.brewyou.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.tylerlutz.brewyou.Models.Restaurant;
 import com.tylerlutz.brewyou.R;
 
 import org.w3c.dom.Text;
@@ -18,7 +19,6 @@ import java.util.List;
  * Created by Tyler on 12/7/15.
  */
 public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
-    private String address;
     private Context context;
     private List<Restaurant> restaurants;
     private int layout2Inflate;

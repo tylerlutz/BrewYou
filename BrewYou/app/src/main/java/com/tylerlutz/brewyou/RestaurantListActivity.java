@@ -17,7 +17,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.tylerlutz.brewyou.Models.Restaurant;
-import com.tylerlutz.brewyou.Models.RestaurantAdapter;
+import com.tylerlutz.brewyou.Adapters.RestaurantAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,17 +71,22 @@ public class RestaurantListActivity extends AppCompatActivity {
                     }
                 }
             });
+
             listViewRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                    Restaurant restaurant = arrayAdapter.getItem(position);
+                    Intent intent = new Intent(getApplicationContext(),BeerListActivity.class);
+                    intent.putExtra("restaurantid",restaurant.getRestaurantId());
+                    startActivity(intent);
                 }
             });
+
             listViewRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     Restaurant restaurant = arrayAdapter.getItem(position);
-                    Intent intent = new Intent(getApplicationContext(), RestaurantDetails.class);
+                    Intent intent = new Intent(getApplicationContext(), RestaurantDetailsActivity.class);
                     intent.putExtra("objectid", restaurant.getRestaurantId());
                     startActivity(intent);
                     return false;

@@ -36,12 +36,22 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
         <activity android:name=".CreateRestaurantActivity"
-            android:label="Create Restaurant"/>
-        <activity android:name=".RestaurantDetails"
+            android:label="Create Restaurant"
+            android:parentActivityName=".RestaurantListActivity"/>
+        <activity android:name=".RestaurantDetailsActivity"
             android:label="Restaurant Details"
             android:parentActivityName=".RestaurantListActivity"/>
         <activity android:name=".UpdateRestaurantActivity"
             android:label="Update Restaurant"/>
+        <activity android:name=".BeerListActivity"
+            android:label="Beer List"
+            android:parentActivityName=".RestaurantListActivity"/>
+        <activity android:name=".CreateBeerActivity"
+            android:label="Create Beer"
+            android:parentActivityName=".BeerListActivity"/>
+        <activity android:name=".BeerDetailsActivity"
+            android:label="Beer Details"
+            android:parentActivityName=".BeerListActivity"/>
     </application>
 
 </manifest>

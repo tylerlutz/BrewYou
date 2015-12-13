@@ -10,47 +10,38 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Restaurant Name"/>
+        android:text="Beer Name"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtCreateRestaurantName"/>
+        android:id="@+id/txtCreateBeerName"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Address"/>
+        android:text="Brewer"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtCreateRestaurantAddress"/>
+        android:id="@+id/txtCreateBeerBrewer"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="City"/>
+        android:text="Type"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtCreateRestaurantCity"/>
+        android:id="@+id/txtCreateBeerType"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="State"/>
-    <EditText
-        android:layout_width="match_parent"
+        android:text="Rating"/>
+    <NumberPicker
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtCreateRestaurantState"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Zip Code"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:id="@+id/txtCreateRestaurantZip"/>
+        android:id="@+id/numPickCreateBeerRating"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnCreateRestaurant"
-        android:text="Create New Restaurant"/>
+        android:id="@+id/btnCreateBeer"
+        android:text="Create New Beer"/>
 </LinearLayout>

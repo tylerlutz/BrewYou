@@ -9,7 +9,7 @@ import java.util.List;
 public class Menu {
     private int menuId;
     private String restaurantId;
-    private int beerId;
+    private String beerId;
 
     public Menu(){}
 
@@ -17,7 +17,7 @@ public class Menu {
         if (findRestaurantId(restaurant) != null) {
             this.restaurantId = findRestaurantId(restaurant);
         }
-        if (findBeerId(beer) != 0){
+        if (findBeerId(beer) != null){
             this.beerId = findBeerId(beer);
         }
     }
@@ -30,11 +30,11 @@ public class Menu {
         this.menuId = menuId;
     }
 
-    public int getBeerId() {
+    public String getBeerId() {
         return beerId;
     }
 
-    public void setBeerId(int beerId) {
+    public void setBeerId(String beerId) {
         this.beerId = beerId;
     }
 
@@ -60,7 +60,7 @@ public class Menu {
         return null;
     }
 
-    public int findBeerId(String name){
+    public String findBeerId(String name){
         List<Beer> beers;{
             beers = new ArrayList<Beer>();
         }
@@ -70,6 +70,6 @@ public class Menu {
                 return beer.getBeerId();
             }
         }
-        return 0;
+        return null;
     }
 }
