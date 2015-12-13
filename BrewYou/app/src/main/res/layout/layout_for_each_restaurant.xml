@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:id="@+id/textViewBeerName"
+        android:id="@+id/textViewRestaurantName"
         android:textSize="16dp"
         android:textColor="#686868"
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
         <TextView
-            android:id="@+id/textViewBeerRating"
+            android:id="@+id/textViewRestaurantAddress"
             android:textSize="12dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

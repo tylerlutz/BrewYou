@@ -33,4 +33,7 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
     compile 'com.parse:parsefacebookutils-v4-android:1.10.3@aar'
     //compile 'com.parse:parsetwitterutils-android:1.10.3'
+
+    // Google Maps API
+    compile 'com.google.android.gms:play-services:8.3.0'
 }
