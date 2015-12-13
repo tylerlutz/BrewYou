@@ -52,6 +52,8 @@
         <activity android:name=".BeerDetailsActivity"
             android:label="Beer Details"
             android:parentActivityName=".BeerListActivity"/>
+        <activity android:name=".UpdateBeerActivity"
+            android:label="Update Beer"/>
     </application>
 
 </manifest>
