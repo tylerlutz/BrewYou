@@ -8,4 +8,5 @@
     <string name="email_hint">Email</string>
     <string name="sign_up_button_label">Sign Up</string>
     <string name="facebook_app_id">1486358298338695</string>
+    <string name="com.google.android.geo.API_KEY">AIzaSyBKONY_uaiF8fA3ScjVbv7dac9hBoDTuPo</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.tylerlutz.brewyou.Fragments;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -9,16 +10,27 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.tylerlutz.brewyou.Models.Restaurant;
 import com.tylerlutz.brewyou.R;
+
+import org.json.JSONException;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Intent intent;
+    private Restaurant restaurant = new Restaurant();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        try {
+            restaurant.findRestaurantCoordinates();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -40,8 +52,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng here = new LatLng(restaurant.getRestaurantLatitude(), restaurant.getRestaurantLatitude());
+        mMap.addMarker(new MarkerOptions().position(here).title(restaurant.getRestaurantName().toString()));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(here));
     }
+
 }
