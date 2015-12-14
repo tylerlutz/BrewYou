@@ -3,13 +3,17 @@ package com.tylerlutz.brewyou.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -50,6 +54,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        final LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
         intent = getIntent();
         restaurant.setRestaurantId(intent.getStringExtra("objectid"));
 
@@ -63,15 +70,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     } catch (JSONException x) {
                         x.printStackTrace();
                     }
+                    Log.d("Map Coordinate", restaurant.getRestaurantLatLng().toString());
+
+                    LatLng latLng;
+                    MarkerOptions marker;
+
+                    latLng = new LatLng(restaurant.getRestaurantLatitude(), restaurant.getRestaurantLongitude());
+                    marker = new MarkerOptions();
+                    marker.position(latLng);
+                    marker.title(restaurant.getRestaurantName());
+                    mMap.addMarker(marker);
+                    builder.include(marker.getPosition());
+
+                    //mMap.addMarker(new MarkerOptions().position(restaurant.getRestaurantLatLng()).title(restaurant.getRestaurantName()));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                 }
             }
         });
-        // Add a marker in Sydney and move the camera
-        // LatLng here = new LatLng(restaurant.getRestaurantLatitude(), restaurant.getRestaurantLongitude());
-        mMap.addMarker(new MarkerOptions().position(restaurant.getRestaurantLatLng()).title(restaurant.getRestaurantName()));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(restaurant.getRestaurantLatLng()));
-    }
 
+        mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
+
+            @Override
+            public void onCameraChange(CameraPosition arg0) {
+                // Move camera.
+                int padding = 100; // offset from edges of the map in pixels
+                LatLngBounds bounds = builder.build();
+                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+                mMap.animateCamera(cu);
+
+                // Remove listener to prevent position reset on camera move.
+                mMap.setOnCameraChangeListener(null);
+            }
+
+        });
+
+    }
 }
