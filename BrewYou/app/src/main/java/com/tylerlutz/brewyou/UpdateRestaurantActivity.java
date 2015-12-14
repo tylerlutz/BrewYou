@@ -56,7 +56,7 @@ public class UpdateRestaurantActivity extends AppCompatActivity {
         intent = getIntent();
 
         final Restaurant restaurant = new Restaurant();
-        restaurant.setRestaurantId(intent.getStringExtra("objectid"));
+        restaurant.setRestaurantId(intent.getStringExtra("restaurantid"));
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Restaurant");
         query.getInBackground(restaurant.getRestaurantId(), new GetCallback<ParseObject>() {
@@ -144,7 +144,8 @@ public class UpdateRestaurantActivity extends AppCompatActivity {
                                 parseObject.put("zip", zip);
                                 parseObject.saveInBackground();
 
-                                Intent intent = new Intent(getApplicationContext(),RestaurantListActivity.class);
+                                Intent intent = new Intent(getApplicationContext(),RestaurantDetailsActivity.class);
+                                intent.putExtra("restaurantid",restaurant.getRestaurantId());
                                 startActivity(intent);
 
                             }else {

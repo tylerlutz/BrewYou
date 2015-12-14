@@ -2,9 +2,11 @@ package com.tylerlutz.brewyou;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +15,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.tylerlutz.brewyou.Models.Beer;
+import com.tylerlutz.brewyou.Models.Restaurant;
 
 import org.w3c.dom.Text;
 
@@ -27,12 +30,13 @@ public class BeerDetailsActivity extends AppCompatActivity {
     private String brewer;
     private String type;
 
-    private String rating;
+    private int rating;
 
     private TextView txtName;
     private TextView txtBrewer;
     private TextView txtType;
-    private TextView txtRating;
+
+    private RatingBar ratingBarRating;
 
     private Button btnUpdate;
     private Button btnDelete;
@@ -43,13 +47,29 @@ public class BeerDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_beer_details);
 
         intent = getIntent();
+        final Bundle extras = intent.getExtras();
+
+
         final Beer beer = new Beer();
-        beer.setBeerId(intent.getStringExtra("beerid"));
+        final Restaurant restaurant = new Restaurant();
+        beer.setBeerId(extras.getString("beerid"));
+        restaurant.setRestaurantId(extras.getString("restaurantid"));
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabBackToBeerList);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BeerListActivity.class);
+                intent.putExtra("restaurantid", restaurant.getRestaurantId());
+                startActivity(intent);
+            }
+        });
 
         txtName = (TextView)findViewById(R.id.txtBeerDetailName);
         txtBrewer = (TextView)findViewById(R.id.txtBeerDetailBrewer);
         txtType = (TextView)findViewById(R.id.txtBeerDetailType);
-        txtRating = (TextView)findViewById(R.id.txtBeerDetailRating);
+
+        ratingBarRating=(RatingBar)findViewById(R.id.rateBarBeerDetail);
 
         btnUpdate = (Button)findViewById(R.id.btnEditBeer);
         btnDelete = (Button)findViewById(R.id.btnDeleteBeer);
@@ -62,12 +82,14 @@ public class BeerDetailsActivity extends AppCompatActivity {
                     name = parseBeer.getString("name");
                     brewer = parseBeer.getString("brewer");
                     type = parseBeer.getString("type");
-                    rating = parseBeer.getString("rating");
+                    rating = parseBeer.getInt("rating");
 
                     txtName.setText(name);
                     txtBrewer.setText(brewer);
                     txtType.setText(type);
-                    txtRating.setText("Rating: " + rating);
+
+                    ratingBarRating.setRating(rating);
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                 }
@@ -78,7 +100,7 @@ public class BeerDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),UpdateBeerActivity.class);
-                intent.putExtra("beerid",beer.getBeerId());
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });
@@ -93,7 +115,8 @@ public class BeerDetailsActivity extends AppCompatActivity {
                         if (e == null) {
                             parseBeer.deleteInBackground();
 
-                            Intent intent = new Intent(getApplicationContext(),RestaurantListActivity.class);
+                            Intent intent = new Intent(getApplicationContext(),BeerListActivity.class);
+                            intent.putExtra("restaurantid",restaurant.getRestaurantId());
                             startActivity(intent);
                         } else {
                             Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();

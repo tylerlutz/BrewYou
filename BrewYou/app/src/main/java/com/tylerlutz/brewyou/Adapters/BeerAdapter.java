@@ -40,7 +40,7 @@ public class BeerAdapter extends ArrayAdapter<Beer> {
         TextView textViewBeerName = (TextView)convertView.findViewById(R.id.textViewBeerName);
         textViewBeerName.setText(beer.getBeerName());
         TextView textViewBeerRating = (TextView)convertView.findViewById(R.id.textViewBeerRating);
-        textViewBeerRating.setText("Rating: ");
+        textViewBeerRating.setText("Rating: " + String.valueOf(beer.getBeerRating())+ " Stars");
         return convertView;
     }
 }

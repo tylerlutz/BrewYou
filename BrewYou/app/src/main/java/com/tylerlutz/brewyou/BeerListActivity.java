@@ -62,7 +62,7 @@ public class BeerListActivity extends AppCompatActivity {
                             newBeer.setBeerId(beers.getObjectId());
                             newBeer.setBeerName(beers.getString("name"));
                             newBeer.setBeerBrewer(beers.getString("brewer"));
-                            newBeer.setBeerRating(Integer.parseInt(beers.getString("rating")));
+                            newBeer.setBeerRating(beers.getInt("rating"));
                             newBeer.setBeerType(beers.getString("type"));
                             beerAdapter.add(newBeer);
                         }
@@ -76,7 +76,10 @@ public class BeerListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Beer beer = beerAdapter.getItem(position);
                 Intent intent = new Intent(getApplicationContext(),BeerDetailsActivity.class);
-                intent.putExtra("beerid",beer.getBeerId());
+                Bundle bundle = new Bundle();
+                bundle.putString("beerid",beer.getBeerId());
+                bundle.putString("restaurantid",restaurant.getRestaurantId());
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

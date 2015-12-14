@@ -2,6 +2,7 @@ package com.tylerlutz.brewyou;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -50,7 +51,17 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         btnUpdate = (Button)findViewById(R.id.btnEditRestaurant);
         btnDelete = (Button)findViewById(R.id.btnDeleteRestaurant);
 
-        restaurant.setRestaurantId(intent.getStringExtra("objectid"));
+        restaurant.setRestaurantId(intent.getStringExtra("restaurantid"));
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabBackToRestaurantList);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RestaurantListActivity.class);
+                intent.putExtra("restaurantid", restaurant.getRestaurantId());
+                startActivity(intent);
+            }
+        });
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Restaurant");
         query.getInBackground(restaurant.getRestaurantId(), new GetCallback<ParseObject>() {
@@ -74,7 +85,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UpdateRestaurantActivity.class);
-                intent.putExtra("objectid", restaurant.getRestaurantId());
+                intent.putExtra("restaurantid", restaurant.getRestaurantId());
                 startActivity(intent);
             }
         });

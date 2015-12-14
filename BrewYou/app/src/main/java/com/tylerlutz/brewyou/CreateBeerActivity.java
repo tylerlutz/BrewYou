@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.RatingBar;
 import android.widget.Toast;
 import com.parse.ParseObject;
 import com.tylerlutz.brewyou.Models.Restaurant;
@@ -22,7 +23,7 @@ public class CreateBeerActivity extends AppCompatActivity {
     private EditText brewer;
     private EditText type;
 
-    private NumberPicker rating;
+    private RatingBar rating;
 
     private Button btnCreate;
 
@@ -38,10 +39,8 @@ public class CreateBeerActivity extends AppCompatActivity {
         final Restaurant restaurant = new Restaurant();
         restaurant.setRestaurantId(intent.getStringExtra("restaurantid"));
 
-        rating = (NumberPicker)findViewById(R.id.numPickCreateBeerRating);
-        rating.setMaxValue(5);
-        rating.setMinValue(0);
-        rating.setWrapSelectorWheel(true);
+        rating = (RatingBar)findViewById(R.id.rateBarCreateBeerRating);
+        rating.setStepSize(1);
 
         name = (EditText)findViewById(R.id.txtCreateBeerName);
         brewer = (EditText)findViewById(R.id.txtCreateBeerBrewer);
@@ -69,7 +68,7 @@ public class CreateBeerActivity extends AppCompatActivity {
                     }
                     validationError = true;
                     validationErrorMessage.append("enter the beer's type");
-                }else if(rating.getValue() == 0){
+                }else if(rating.getRating() == 0){
                     if(validationError){
                         validationErrorMessage.append(", and ");
                     }
@@ -88,10 +87,11 @@ public class CreateBeerActivity extends AppCompatActivity {
                 newBeer.put("name",name.getText().toString());
                 newBeer.put("brewer",brewer.getText().toString());
                 newBeer.put("type",type.getText().toString());
-                newBeer.put("rating", String.valueOf(rating.getValue()));
+                newBeer.put("rating", rating.getRating());
                 newBeer.saveInBackground();
 
                 Intent backToList = new Intent(getApplicationContext(),BeerListActivity.class);
+                intent.putExtra("restaurantid",restaurant.getRestaurantId());
                 startActivity(backToList);
             }
         });

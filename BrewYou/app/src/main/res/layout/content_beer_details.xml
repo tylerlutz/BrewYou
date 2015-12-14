@@ -31,13 +31,12 @@
         android:gravity="center_horizontal"
         android:id="@+id/txtBeerDetailType"
         android:paddingBottom="20dp"/>
-    <TextView
-        android:layout_width="match_parent"
+    <RatingBar
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="rating"
-        android:gravity="center_horizontal"
-        android:id="@+id/txtBeerDetailRating"
-        android:paddingBottom="20dp"/>
+        android:id="@+id/rateBarBeerDetail"
+        android:layout_gravity="center"
+        android:isIndicator="true"/>
 
     <Button
         android:layout_width="match_parent"

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,8 +27,6 @@ public class RestaurantListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.createRestaurant);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +42,7 @@ public class RestaurantListActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             //Generate Restaurants
-            ListView listViewRestaurants = (ListView) findViewById(R.id.listViewResturants);
+            ListView listViewRestaurants = (ListView) findViewById(R.id.listViewRestaurants);
             List<Restaurant> restaurants = new ArrayList<>();
             final RestaurantAdapter arrayAdapter = new RestaurantAdapter(this,
                     R.layout.layout_for_each_restaurant, restaurants);
@@ -87,7 +84,7 @@ public class RestaurantListActivity extends AppCompatActivity {
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     Restaurant restaurant = arrayAdapter.getItem(position);
                     Intent intent = new Intent(getApplicationContext(), RestaurantDetailsActivity.class);
-                    intent.putExtra("objectid", restaurant.getRestaurantId());
+                    intent.putExtra("restaurantid", restaurant.getRestaurantId());
                     startActivity(intent);
                     return false;
                 }

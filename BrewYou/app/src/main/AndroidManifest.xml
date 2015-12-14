@@ -16,7 +16,7 @@
         <activity
             android:name=".RestaurantListActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,8 +39,7 @@
             android:label="Create Restaurant"
             android:parentActivityName=".RestaurantListActivity"/>
         <activity android:name=".RestaurantDetailsActivity"
-            android:label="Restaurant Details"
-            android:parentActivityName=".RestaurantListActivity"/>
+            android:label="Restaurant Details"/>
         <activity android:name=".UpdateRestaurantActivity"
             android:label="Update Restaurant"/>
         <activity android:name=".BeerListActivity"
@@ -50,8 +49,7 @@
             android:label="Create Beer"
             android:parentActivityName=".BeerListActivity"/>
         <activity android:name=".BeerDetailsActivity"
-            android:label="Beer Details"
-            android:parentActivityName=".BeerListActivity"/>
+            android:label="Beer Details"/>
         <activity android:name=".UpdateBeerActivity"
             android:label="Update Beer"/>
     </application>
