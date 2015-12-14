@@ -4,6 +4,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +37,7 @@ public class Restaurant {
     private Date restaurantLastVisit;
     private Double restaurantLatitude;
     private Double restaurantLongitude;
+    private LatLng restaurantLatLng;
 
     private static final String GOOGLE_GEOCODER_URL = "https://maps.google.com/maps/api/geocode/json&sensor=false&?address=";
 
@@ -51,7 +54,6 @@ public class Restaurant {
         this.restaurantState = restaurantState;
         this.restaurantZip = restaurantZip;
         this.restaurantFirstVisit = Calendar.getInstance().getTime();
-
         try {
             findRestaurantCoordinates();
         } catch (JSONException e) {
@@ -175,6 +177,8 @@ public class Restaurant {
                 .getDouble("lat");
         setRestaurantLatitude(lat);
         setRestaurantLongitude(lng);
+        LatLng location = new LatLng(lat,lng);
+        this.setRestaurantLatLng(location);
     }
 
 
@@ -209,5 +213,13 @@ public class Restaurant {
             e.printStackTrace();
         }
         return response;
+    }
+
+    public LatLng getRestaurantLatLng() {
+        return restaurantLatLng;
+    }
+
+    public void setRestaurantLatLng(LatLng restaurantLatLng) {
+        this.restaurantLatLng = restaurantLatLng;
     }
 }
