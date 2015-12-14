@@ -35,9 +35,12 @@ public class CreateBeerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_beer);
 
         intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+
 
         final Restaurant restaurant = new Restaurant();
-        restaurant.setRestaurantId(intent.getStringExtra("restaurantid"));
+        restaurant.setRestaurantId(bundle.getString("restaurantid"));
 
         rating = (RatingBar)findViewById(R.id.rateBarCreateBeerRating);
         rating.setStepSize(1);
@@ -90,7 +93,7 @@ public class CreateBeerActivity extends AppCompatActivity {
                 newBeer.put("rating", rating.getRating());
                 newBeer.saveInBackground();
 
-                Intent backToList = new Intent(getApplicationContext(),BeerListActivity.class);
+                Intent backToList = new Intent(getApplicationContext(),RestaurantListActivity.class);
                 intent.putExtra("restaurantid",restaurant.getRestaurantId());
                 startActivity(backToList);
             }

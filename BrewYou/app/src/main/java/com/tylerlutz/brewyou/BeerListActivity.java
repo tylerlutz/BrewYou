@@ -30,25 +30,28 @@ public class BeerListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beer_list);
 
+        List<Beer> beerList = new ArrayList<>();
+        final BeerAdapter beerAdapter = new BeerAdapter(this,
+                R.layout.layout_for_each_beer,beerList);
+
         intent = getIntent();
         final Restaurant restaurant = new Restaurant();
         restaurant.setRestaurantId(intent.getStringExtra("restaurantid"));
+        beerAdapter.notifyDataSetChanged();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.createBeer);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CreateBeerActivity.class);
-                intent.putExtra("restaurantid",restaurant.getRestaurantId());
+                intent.putExtra("restaurantid", restaurant.getRestaurantId());
                 startActivity(intent);
             }
         });
 
 
         ListView beerListView = (ListView)findViewById(R.id.listViewBeers);
-        List<Beer> beerList = new ArrayList<>();
-        final BeerAdapter beerAdapter = new BeerAdapter(this,
-                R.layout.layout_for_each_beer,beerList);
         beerListView.setAdapter(beerAdapter);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Beer");
